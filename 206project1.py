@@ -1,7 +1,6 @@
 import os
 import filecmp
-import datetime
-
+import datetime 
 
 def getData(file):
 #Input: file name
@@ -28,6 +27,7 @@ def getData(file):
 			number += 1
 		data_list.append(dictionary)
 	return data_list
+
 #Sort based on key/column
 def mySort(data,col):
 #Input: list of dictionaries
@@ -59,7 +59,7 @@ def classSizes(data):
 	total = []
 	for kevin in sort_class:
 		total.append((kevin, grade_sizes[kevin]))
-	return total			
+	return total
 
 
 
@@ -81,6 +81,7 @@ def findDay(a):
 	days_sort = sorted(day_dict, key = lambda kevin:day_dict[kevin], reverse= True)			
 	return int(days_sort[0])
 
+
 # Find the average age (rounded) of the Students
 def findAge(a):
 # Input: list of dictionaries
@@ -98,8 +99,7 @@ def findAge(a):
 			age_list.append(year_now - int(birth_year))
 		else:
 			age_list.append(year_now - int(birth_year) + 1)
-	return round((sum(age_list)/ len(age_list)), 0)			
-
+	return round((sum(age_list)/ len(age_list)), 0)
 
 #Similar to mySort, but instead of returning single
 #Student, all of the sorted data is saved to a csv file.
@@ -110,16 +110,11 @@ def mySortPrint(a,col,fileName):
 	#Your code here:
 	my_csv = open(fileName, 'w')
 	list_sorted = sorted(a, key = lambda x: x[col])
-
-	for element in list_sorted:
-		lst = []
-		for y in element.values():
-			lst.append(y)
-		rows = ",".join(lst[:3])
-		my_csv.write(rows + "\n")
-
+	for y in list_sorted:
+		data = list(y.values())[:3]
+		my_csv.write(",".join(data) + '\n')
+		
 	my_csv.close()
-	return None
 
 
 ################################################################
@@ -144,7 +139,7 @@ def main():
 	print("Read in Test data and store as a list of dictionaries")
 	data = getData('P1DataA.csv')
 	data2 = getData('P1DataB.csv')
-	total += test(type(data),type([]),35)
+	total += test(type(data),type([]),40)
 	print()
 	print("First student sorted by First name:")
 	total += test(mySort(data,'First'),'Abbot Le',15)
